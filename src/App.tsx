@@ -1,25 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Toolbar from './components/Toolbar';
+import LifeBoard from './components/LifeBoard';
+import AppContainer from './components/AppContainer';
 
-function App() {
+const DEFAULT_SIZE = 25;
+const MAX_CELLS = 30;
+const MIN_CELLS = 4;
+
+const App = () => {
+  const [started, setStarted] = useState(false);
+  const [size, setSize] = useState(DEFAULT_SIZE);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+      <Toolbar setSize={setSize} setStarted={setStarted} size={size} started={started} minSize={MIN_CELLS} maxSize={MAX_CELLS} />
+      <LifeBoard size={size} started={started} />
+    </AppContainer>
   );
 }
 
